@@ -12,7 +12,7 @@
 
 </div>
 
----
+
 
 ## About
 
@@ -20,7 +20,7 @@
 
 Building intelligent systems with Python, TensorFlow, and modern web frameworks. Passionate about creating AI-powered solutions for real-world challenges in healthcare, fitness, and business automation.
 
----
+
 
 ## Tech Stack
 
@@ -60,7 +60,7 @@ Building intelligent systems with Python, TensorFlow, and modern web frameworks.
 ![Clerk](https://img.shields.io/badge/Clerk-6C47FF?style=for-the-badge&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
----
+
 
 ## GitHub Stats
 
@@ -72,7 +72,7 @@ Building intelligent systems with Python, TensorFlow, and modern web frameworks.
 
 </div>
 
----
+
 
 <div align="center">
 
