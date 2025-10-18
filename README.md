@@ -16,10 +16,20 @@
 
 ## About
 
-**BSc (Hons) Information Technology - Data Science** @ SLIIT | 2023 - 2027
+**BSc (Hons) Information Technology - Data Science @ SLIIT | 2023 - 2027**
 
 Building intelligent systems with Python, TensorFlow, and modern web frameworks. Passionate about creating AI-powered solutions for real-world challenges.
 
+## GitHub Stats
+
+<div>
+
+<p align="center">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=PasinduSuraweera&show_icons=true&theme=transparent&hide_border=false&count_private=true&include_all_commits=true&title_color=00d9ff&icon_color=00d9ff&text_color=c9d1d9" />
+  <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=PasinduSuraweera&theme=transparent&hide_border=false&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff" />
+</p>
+
+</div>
 
 
 ## Tech Stack
@@ -61,19 +71,7 @@ Building intelligent systems with Python, TensorFlow, and modern web frameworks.
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
 
-
-## GitHub Stats
-
-<div align="center">
-
-![Pasindu's GitHub stats](https://github-readme-stats.vercel.app/api?username=PasinduSuraweera&show_icons=true&theme=dark&hide_border=false&count_private=true&include_all_commits=true&bg_color=0d1117&title_color=00d9ff&icon_color=00d9ff&text_color=c9d1d9&border_color=30363d&border_radius=10)
-
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=PasinduSuraweera&theme=dark&hide_border=false&background=0d1117&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff&border=30363d&stroke=30363d&dates=c9d1d9&sideNums=c9d1d9&currStreakNum=c9d1d9&sideLabels=c9d1d9)
-
-</div>
-
-
-
+---
 <div align="center">
 
 **Open for internships, collaborations, and AI/ML projects**
