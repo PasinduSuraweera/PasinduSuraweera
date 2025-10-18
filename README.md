@@ -25,8 +25,8 @@ Building intelligent systems with Python, TensorFlow, and modern web frameworks.
 <div>
 
 <p align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=PasinduSuraweera&show_icons=true&theme=transparent&hide_border=false&count_private=true&include_all_commits=true&title_color=00d9ff&icon_color=00d9ff&text_color=c9d1d9" />
-  <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=PasinduSuraweera&theme=transparent&hide_border=false&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=PasinduSuraweera&show_icons=true&theme=transparent&hide_border=true&count_private=true&include_all_commits=true&title_color=00d9ff&icon_color=00d9ff&text_color=c9d1d9" />
+  <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=PasinduSuraweera&theme=transparent&hide_border=true&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff" />
 </p>
 
 </div>
