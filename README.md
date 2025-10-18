@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="./assets/header1.png" height="100">
+<!-- Replace ./assets/header.png with your actual image path -->
 
 **Data Science Undergraduate | AI/ML Engineer | Full Stack Developer**
 
