@@ -18,7 +18,7 @@
 
 **BSc (Hons) Information Technology - Data Science @ SLIIT | 2023 - 2027**
 
-Building intelligent systems with Python, TensorFlow, and modern web frameworks. Passionate about creating AI-powered solutions for real-world challenges.
+Developing engineering solutions that combine advanced machine learning with modern software engineering. I enjoy building meaningful technology that delivers value through thoughtful design, responsible AI, and scalable architecture.
 
 ## GitHub Stats
 
