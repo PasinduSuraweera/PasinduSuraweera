@@ -1,4 +1,7 @@
-# Hi, I'm Pasindu 👋
+<div align="center">
+
+![Header](./assets/header.png)
+<!-- Replace ./assets/header.png with your actual image path -->
 
 **Data Science Undergraduate | AI/ML Engineer | Full Stack Developer**
 
@@ -7,6 +10,9 @@
 [![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:pssuraweera2003@gmail.com)
 ![Profile Views](https://komarev.com/ghpvc/?username=PasinduSuraweera&color=00D9FF&style=for-the-badge&label=PROFILE+VIEWS)
 
+</div>
+
+---
 
 ## About
 
@@ -14,6 +20,7 @@
 
 Building intelligent systems with Python, TensorFlow, and modern web frameworks. Passionate about creating AI-powered solutions for real-world challenges in healthcare, fitness, and business automation.
 
+---
 
 ## Tech Stack
 
@@ -53,14 +60,22 @@ Building intelligent systems with Python, TensorFlow, and modern web frameworks.
 ![Clerk](https://img.shields.io/badge/Clerk-6C47FF?style=for-the-badge&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
-
+---
 
 ## GitHub Stats
+
+<div align="center">
 
 ![Pasindu's GitHub stats](https://github-readme-stats.vercel.app/api?username=PasinduSuraweera&show_icons=true&theme=dark&hide_border=false&count_private=true&include_all_commits=true&bg_color=0d1117&title_color=00d9ff&icon_color=00d9ff&text_color=c9d1d9&border_color=30363d&border_radius=10)
 
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=PasinduSuraweera&theme=dark&hide_border=false&background=0d1117&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff&border=30363d&stroke=30363d&dates=c9d1d9&sideNums=c9d1d9&currStreakNum=c9d1d9&sideLabels=c9d1d9)
 
+</div>
 
+---
+
+<div align="center">
 
 **Open for internships, collaborations, and AI/ML projects**
+
+</div>
