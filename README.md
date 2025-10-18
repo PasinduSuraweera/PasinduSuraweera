@@ -18,7 +18,7 @@
 
 **BSc (Hons) Information Technology - Data Science** @ SLIIT | 2023 - 2027
 
-Building intelligent systems with Python, TensorFlow, and modern web frameworks. Passionate about creating AI-powered solutions for real-world challenges in healthcare, fitness, and business automation.
+Building intelligent systems with Python, TensorFlow, and modern web frameworks. Passionate about creating AI-powered solutions for real-world challenges.
 
 
 
