@@ -1,7 +1,5 @@
 <div align="center">
 
-![Header](./assets/header.png)
-<!-- Replace ./assets/header.png with your actual image path -->
 
 **Data Science Undergraduate | AI/ML Engineer | Full Stack Developer**
 
