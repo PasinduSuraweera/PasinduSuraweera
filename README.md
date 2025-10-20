@@ -1,15 +1,14 @@
 <div>
 
-<img src="./assets/header2.png" height="100">
+<img src="./assets/header2.png" height="90">
 <!-- Replace ./assets/header.png with your actual image path -->
 
 **Data Science Undergraduate | AI/ML Engineer | Full Stack Developer**
 
-[![Website](https://img.shields.io/badge/🌐_Website-pasindusuraweera.com-00D9FF?style=for-the-badge)](https://pasindusuraweera.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/pasindu-suraweera-03s)
-[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:pssuraweera2003@gmail.com)
-![Profile Views](https://komarev.com/ghpvc/?username=PasinduSuraweera&color=00D9FF&style=for-the-badge&label=PROFILE+VIEWS)
-
+[![Website](https://img.shields.io/badge/Website-pasindusuraweera.com-blue)](https://pasindusuraweera.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5)](https://linkedin.com/in/pasindu-suraweera-03s)
+[![Email](https://img.shields.io/badge/Email-Contact-red)](mailto:pssuraweera2003@gmail.com)
+![Profile Views](https://komarev.com/ghpvc/?username=PasinduSuraweera&color=blue&style=flat)
 </div>
 
 
@@ -24,7 +23,7 @@ Developing engineering solutions that combine advanced machine learning with mod
 
 <div>
 
-<p align="center">
+<p>
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=PasinduSuraweera&show_icons=true&theme=transparent&hide_border=true&count_private=true&include_all_commits=true&title_color=00d9ff&icon_color=00d9ff&text_color=c9d1d9" />
   <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=PasinduSuraweera&theme=transparent&hide_border=true&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff" />
 </p>
