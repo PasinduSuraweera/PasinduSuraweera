@@ -1,4 +1,4 @@
-<div align="center">
+<div>
 
 <img src="./assets/header2.png" height="100">
 <!-- Replace ./assets/header.png with your actual image path -->
