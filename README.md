@@ -3,7 +3,7 @@
 <img src="./assets/header2.png" height="90">
 <!-- Replace ./assets/header.png with your actual image path -->
 
-**Data Science Undergraduate | AI/ML Engineer | Full Stack Developer**
+**`Data Science Undergraduate | AI/ML Engineer | Full Stack Developer`**
 
 [![Website](https://img.shields.io/badge/Website-pasindusuraweera.com-blue)](https://pasindusuraweera.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5)](https://linkedin.com/in/pasindu-suraweera-03s)
