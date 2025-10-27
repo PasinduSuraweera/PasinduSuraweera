@@ -47,7 +47,7 @@ Developing engineering solutions that combine advanced machine learning with mod
       <b>Elite Gym and Fitness</b><br/>
       <sub>Modern fitness web application powered with personalized AI fitness,diet plans,memberships,blog and a marketplace.</sub><br/>
       🔗 <a href="https://github.com/PasinduSuraweera/Elite-Gym-and-Fitness">Repo</a> | 
-      🌐 <a href="#">Live Demo</a>
+      🌐 <a href="https://elite-gym-and-fitness.vercel.app">Live Demo</a>
       <br/>
       <sub>Tags: Web Development, Full Stack</sub>
     </td>
