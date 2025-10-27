@@ -38,8 +38,22 @@ Developing engineering solutions that combine advanced machine learning with mod
 <table>
   <tr>
     <td align="center" width="33%">
+      <a href="https://github.com/PasinduSuraweera/Elite-Gym-and-Fitness">
+        <img src="https://framerusercontent.com/images/625wecEe7hyiaZllyna8bNe2zU.png?scale-down-to=512&width=1783&height=877"
+             alt="Elite Gym and Fitness"
+             style="width:100%; height:200px; object-fit:cover;"/>
+      </a>
+      <br/>
+      <b>Elite Gym and Fitness</b><br/>
+      <sub>Modern fitness web application powered with personalized AI fitness,diet plans,memberships,blog and a marketplace.</sub><br/>
+      🔗 <a href="https://github.com/PasinduSuraweera/Elite-Gym-and-Fitness">Repo</a> | 
+      🌐 <a href="#">Live Demo</a>
+      <br/>
+      <sub>Tags: Web Development, Full Stack</sub>
+    </td>
+    <td align="center" width="33%">
       <a href="https://github.com/PasinduSuraweera/MRI-Brain-Tumor-Diagnosis-System">
-        <img src="[https://pasindusuraweera.com/projects/mri-brain-tumor.png](https://framerusercontent.com/images/4F9eBDvdKL1qY9DHRJzYtW6Zjzw.png?scale-down-to=512&width=567&height=431)"
+        <img src="https://framerusercontent.com/images/4F9eBDvdKL1qY9DHRJzYtW6Zjzw.png?scale-down-to=512&width=567&height=431"
              alt="MRI Brain Tumor Diagnosis"
              style="width:100%; height:200px; object-fit:cover;"/>
       </a>
@@ -52,8 +66,23 @@ Developing engineering solutions that combine advanced machine learning with mod
       <sub>Tags: TensorFlow, Deep Learning, Healthcare AI</sub>
     </td>
     <td align="center" width="33%">
+      <a href="https://github.com/PasinduSuraweera/Weather-Dashboard-w-Power-BI">
+        <img src="https://framerusercontent.com/images/sY2eTJHFVsMlrJ4MbRkuptLxYyw.png?width=1744&height=1744"
+             alt="Power BI Weather Dashboard"
+             style="width:100%; height:200px; object-fit:cover;"/>
+      </a>
+      <br/>
+      <b>Weather Dashboard - Power BI</b><br/>
+      <sub>Interactive dashboard integrating live weather data, AQI metrics, and 7-day forecasts with DAX measures.</sub><br/>
+      🔗 <a href="https://github.com/PasinduSuraweera/Weather-Dashboard-w-Power-BI">Repo</a>
+      <br/>
+      <sub>Tags: Power BI, DAX, Data Visualization</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
       <a href="https://github.com/PasinduSuraweera/MAIRS-Multi-Agent-Intelligent-Research-System">
-        <img src="https://pasindusuraweera.com/projects/mairs.png"
+        <img src="https://framerusercontent.com/images/KS5QCDDFQKvXOjrbGfhjEmZ8Fyg.png?width=1080&height=1080"
              alt="MAIRS Research System"
              style="width:100%; height:200px; object-fit:cover;"/>
       </a>
@@ -66,7 +95,7 @@ Developing engineering solutions that combine advanced machine learning with mod
     </td>
     <td align="center" width="33%">
       <a href="https://github.com/PasinduSuraweera/EchoChat">
-        <img src="https://pasindusuraweera.com/projects/echochat.png"
+        <img src="https://framerusercontent.com/images/pXsYJ7bl1dkXwSQ413WJr9r5lho.png?width=915&height=825"
              alt="EchoChat Application"
              style="width:100%; height:200px; object-fit:cover;"/>
       </a>
@@ -78,11 +107,9 @@ Developing engineering solutions that combine advanced machine learning with mod
       <br/>
       <sub>Tags: MERN Stack, WebSocket, Video Calling</sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" width="33%">
       <a href="https://github.com/PasinduSuraweera/Specified-LinkedIn-Post-Generator">
-        <img src="https://pasindusuraweera.com/projects/linkedin-generator.png"
+        <img src="https://framerusercontent.com/images/VT7t8xx1vGQRJXg7yTtR7CkJ10g.png?width=797&height=797"
              alt="LinkedIn Post Generator"
              style="width:100%; height:200px; object-fit:cover;"/>
       </a>
@@ -94,9 +121,11 @@ Developing engineering solutions that combine advanced machine learning with mod
       <br/>
       <sub>Tags: LangChain, Groq, NLP</sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" width="33%">
       <a href="https://github.com/PasinduSuraweera/ImaGen-App">
-        <img src="https://pasindusuraweera.com/projects/imagen.png"
+        <img src="https://framerusercontent.com/images/9zDp56NZJhSxTRY2rSPoZNzr8.png?width=1288&height=634"
              alt="ImaGen Image Editor"
              style="width:100%; height:200px; object-fit:cover;"/>
       </a>
@@ -110,7 +139,7 @@ Developing engineering solutions that combine advanced machine learning with mod
     </td>
     <td align="center" width="33%">
       <a href="https://github.com/PasinduSuraweera/EmpManage">
-        <img src="https://pasindusuraweera.com/projects/empmanage.png"
+        <img src="https://framerusercontent.com/images/VlrIQMiMLrGRLnvwaqWRHL6L8w.png?width=771&height=707"
              alt="EmpManage System"
              style="width:100%; height:200px; object-fit:cover;"/>
       </a>
@@ -121,7 +150,8 @@ Developing engineering solutions that combine advanced machine learning with mod
       <br/>
       <sub>Tags: Java, Enterprise Application</sub>
     </td>
+    <td align="center" width="33%">
+      <!-- Add more projects here if needed -->
+    </td>
   </tr>
 </table>
-
-
