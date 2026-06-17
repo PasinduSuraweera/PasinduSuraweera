@@ -10,5 +10,4 @@
                                                                                    
                                                                                    
 </pre>
-<img src="assets/glitch-line.svg" width="420" alt="">
 </div>
