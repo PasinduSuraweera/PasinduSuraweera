@@ -93,45 +93,35 @@ def hex2rgb(h):
     return np.array([int(h[i:i + 2], 16) for i in (0, 2, 4)], float)
 
 
-# ---------- header band: a pixel market tape that scrolls forever ----------
+# ---------- header band: an ember wave that scrolls forever ----------
 def band_png():
     cols, rows, cell = 220, 35, 4          # 880 x 140 px
     x = np.arange(cols)
-    rng = np.random.default_rng(7)
-    # periodic random walk (ends meet so the loop is seamless)
-    steps = rng.normal(0, 1, cols)
-    walk = np.cumsum(steps)
-    walk -= np.linspace(0, walk[-1], cols)
-    k = np.exp(-np.linspace(-2, 2, 9) ** 2); k /= k.sum()
-    walk = np.convolve(np.r_[walk[-8:], walk, walk[:8]], k, "same")[8:-8]
-    price = (np.sin(2 * np.pi * x / cols) * 4 + np.sin(2 * np.pi * 3 * x / cols + 1) * 2.2
-             + walk * 0.9)
-    price = (price - price.min()) / (price.max() - price.min())
-    line_row = (rows - 9) - price * (rows - 15)          # rows 6 .. 26
-    vol = np.abs(np.r_[np.diff(price), price[0] - price[-1]])
-    vol = (vol / vol.max()) * 0.8 + rng.random(cols) * 0.25
-    spikes = rng.choice(cols, 6, replace=False)
+    # whole-loop sines, so the crest and the slope meet at the seam
+    t = 2 * np.pi * x / cols
+    wave = np.sin(2 * t + 0.4) + 0.36 * np.sin(t) + 0.16 * np.sin(3 * t + 2.1)
+    wave = (wave - wave.min()) / (wave.max() - wave.min())
+    line_row = 22 - wave * 15                            # crests near row 7, troughs near 22
 
-    bg, acc, white = hex2rgb(BG), hex2rgb(ACCENT), hex2rgb("#FFE3D6")
+    bg, acc = hex2rgb(BG), hex2rgb(ACCENT)
+    hot = hex2rgb("#FF9A58")
     inten = np.zeros((rows, cols))
+    cores = np.empty(cols, np.int16)
     for c in range(cols):
-        lr = line_row[c]
+        lr = float(line_row[c])
+        core = int(round(lr))
+        cores[c] = core
         for r in range(rows):
             d = r - lr
             if abs(d) < 0.8:
-                v = 1.0
-            elif d > 0 and r < rows - 6:
-                v = max(0.0, 0.38 * math.exp(-d / 3.2))
+                v = 1.35 if r == core else 1.0          # hotter cap on the same ridge
+            elif -1.7 < d < -0.8:
+                v = 0.34                                # one-pixel ember halo
+            elif d >= 0.8 and r < rows - 1:
+                v = 0.56 * math.exp(-(d - 0.8) / 3.5)   # body under the ridge
             else:
                 v = 0.0
             inten[r, c] = v
-        h = int(round(vol[c] * 4))                      # volume ticks, bottom 4 rows
-        for r in range(rows - h, rows):
-            inten[r, c] = max(inten[r, c], 0.28)
-        if c in spikes:                                 # flagged trades
-            for r in range(int(lr) - 4, int(lr) - 1):
-                if 0 <= r < rows:
-                    inten[r, c] = 1.15
     # dim grid of dots everywhere, like a board waiting for data
     inten = np.maximum(inten, 0.07)
 
@@ -141,18 +131,37 @@ def band_png():
         for c in range(cols):
             v = inten[r, c]
             if v > 1:
-                col = white
+                col = hot
             else:
                 col = bg + (acc - bg) * v
             for rep in (0, cols):
                 xx = (c + rep) * cell
                 img[r * cell:r * cell + 3, xx:xx + 3] = col
-    return Image.fromarray(img).convert("P", palette=Image.ADAPTIVE, colors=64)
+    im = Image.fromarray(img).convert("P", palette=Image.ADAPTIVE, colors=64)
+    return im, cores
+
+
+def glint_layer(cores):
+    phases, dur = 22, 5.5
+    buckets = [[] for _ in range(phases)]
+    cols = len(cores)
+    for c, core in enumerate(cores):
+        phase = (c * phases) // cols
+        y = int(core) * 4
+        for rep in (0, 1):
+            buckets[phase].append(f'<rect x="{(c + rep * cols) * 4}" y="{y}" width="3" height="3"/>')
+    step = dur / phases
+    out = []
+    for i, rects in enumerate(buckets):
+        delay = f"{i * step:.2f}".rstrip("0").rstrip(".")
+        out.append(f'<g class="gl" fill="#FFD0AE" style="animation-delay:{delay}s">{"".join(rects)}</g>')
+    return "".join(out)
 
 
 def header():
     W, H = 880, 366
-    band = png_b64(band_png())
+    band_img, cores = band_png()
+    band = png_b64(band_img)
     b = []
     b.append(f'<rect x="0" y="0" width="{W}" height="28" fill="{BAR}"/>')
     b.append(t(12, 19, "Pasindu", 12, "p w"))
@@ -162,13 +171,15 @@ def header():
     b.append("<style>@keyframes bl{0%,24%{opacity:1}25%,100%{opacity:.2}}"
              ".bl{animation:bl 1.2s steps(1,end) infinite}"
              "@keyframes tape{from{transform:translateX(0)}to{transform:translateX(-880px)}}"
-             ".tape{animation:tape 33s steps(220,end) infinite}"
-             "@media(prefers-reduced-motion:reduce){.bl,.tape{animation:none}}</style>")
+             ".tape{animation:tape 33s steps(880,end) infinite}"
+             "@keyframes gleam{0%{opacity:0}3%{opacity:1}16%{opacity:1}30%{opacity:0}100%{opacity:0}}"
+             ".gl{opacity:0;animation:gleam 5.5s linear infinite}"
+             "@media(prefers-reduced-motion:reduce){.bl,.tape,.gl{animation:none}}</style>")
     for (xx, yy), d in zip([(79, 10), (85, 10), (85, 16), (79, 16)], [-1.2, -.9, -.6, -.3]):
         b.append(f'<rect class="bl" x="{xx}" y="{yy}" width="4" height="4" fill="{ACCENT}" style="animation-delay:{d}s"/>')
     b.append(f'<svg x="0" y="28" width="{W}" height="140" viewBox="0 0 {W} 140"><g class="tape">'
              f'<image x="0" y="0" width="1760" height="140" href="data:image/png;base64,{band}" '
-             f'xlink:href="data:image/png;base64,{band}"/></g></svg>')
+             f'xlink:href="data:image/png;base64,{band}"/>{glint_layer(cores)}</g></svg>')
     b.append(hline(0, W, 168))
     b.append(t(22, 232, "Pasindu", 56, "p s", extra=' style="font-weight:300;letter-spacing:-2px"'))
     b.append(t(24, 260, "Data engineering, analytics and open source.", 14, "p"))
