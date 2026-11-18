@@ -1,0 +1,40 @@
+name: header
+
+on:
+  schedule:
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install build dependencies
+        run: |
+          npm install geist
+          python -m pip install numpy pillow fonttools brotli
+      - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEIST_FONTS: node_modules/geist/dist/fonts
+        run: python tools/build.py
+      - name: Commit header if it changed
+        run: |
+          git add -- assets/header.svg
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name "PasinduSuraweera"
+          git config user.email "pasisuraweera2003@gmail.com"
+          git commit -m "Update header wave from contribution calendar"
+          git push

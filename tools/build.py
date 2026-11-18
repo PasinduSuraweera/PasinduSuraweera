@@ -1,5 +1,6 @@
 """Build Pasindu's GitHub profile README assets (SVG cards with embedded Geist fonts)."""
-import base64, io, math, os, random
+import base64, io, json, math, os, random, urllib.request
+from datetime import datetime, timedelta, timezone
 import numpy as np
 from PIL import Image
 from fontTools import subset
@@ -94,13 +95,85 @@ def hex2rgb(h):
 
 
 # ---------- header band: an ember wave that scrolls forever ----------
-def band_png():
-    cols, rows, cell = 220, 35, 4          # 880 x 140 px
+def week_totals():
+    token = os.environ.get("GITHUB_TOKEN", "").strip()
+    if not token:
+        return None
+    to = datetime.now(timezone.utc).replace(microsecond=0)
+    frm = to - timedelta(days=364)
+    query = (
+        "query($login:String!,$from:DateTime!,$to:DateTime!){"
+        "user(login:$login){contributionsCollection(from:$from,to:$to){"
+        "contributionCalendar{weeks{contributionDays{contributionCount}}}}}}"
+    )
+    body = json.dumps({"query": query, "variables": {
+        "login": "PasinduSuraweera",
+        "from": frm.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "to": to.strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }}).encode()
+    req = urllib.request.Request(
+        "https://api.github.com/graphql", data=body,
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json",
+                 "User-Agent": "profile-header"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.load(resp)
+        weeks = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+    except Exception:
+        return None
+    if not weeks:
+        return None
+    days = [d.get("contributionCount") or 0 for w in weeks for d in (w.get("contributionDays") or [])]
+    days = days[-(52 * 7):]
+    if len(days) < 7 * 8:
+        return None
+    n = len(days) - len(days) % 7
+    return [sum(days[i:i + 7]) for i in range(0, n, 7)]
+
+
+def contribution_wave(cols):
+    totals = week_totals()
+    if not totals:
+        return None
+    y = np.asarray(totals, float)
+    if y.max() - y.min() < 1:
+        return None
+    n = len(y)
+    win = min(5, n // 5)
+    target = 0.5 * (y[0] + y[-1])
+    ramp = 0.5 * (1 - np.cos(np.linspace(0, np.pi, win)))
+    pull = 1 - ramp
+    y = y.copy()
+    y[:win] = y[:win] * (1 - pull) + target * pull
+    y[-win:] = y[-win:] * (1 - pull[::-1]) + target * pull[::-1]
+    sampled = np.interp(np.linspace(0, n, cols, endpoint=False), np.arange(n + 1), np.r_[y, y[0]])
+    sigma = cols / n * 1.8
+    radius = max(1, int(round(sigma * 3)))
+    kx = np.arange(-radius, radius + 1)
+    k = np.exp(-0.5 * (kx / sigma) ** 2)
+    k /= k.sum()
+    smooth = np.convolve(np.r_[sampled[-radius:], sampled, sampled[:radius]], k, "valid")
+    span = float(smooth.max() - smooth.min())
+    if span < 1e-6:
+        return None
+    print(f"header wave: {n} contribution weeks")
+    return (smooth - smooth.min()) / span
+
+
+def sine_wave(cols):
     x = np.arange(cols)
-    # whole-loop sines, so the crest and the slope meet at the seam
     t = 2 * np.pi * x / cols
     wave = np.sin(2 * t + 0.4) + 0.36 * np.sin(t) + 0.16 * np.sin(3 * t + 2.1)
-    wave = (wave - wave.min()) / (wave.max() - wave.min())
+    return (wave - wave.min()) / (wave.max() - wave.min())
+
+
+def band_png():
+    cols, rows, cell = 220, 35, 4          # 880 x 140 px
+    wave = contribution_wave(cols)
+    if wave is None:
+        print("header wave: sine fallback")
+        wave = sine_wave(cols)
     line_row = 22 - wave * 15                            # crests near row 7, troughs near 22
 
     bg, acc = hex2rgb(BG), hex2rgb(ACCENT)
@@ -158,10 +231,50 @@ def glint_layer(cores):
     return "".join(out)
 
 
+def rider(cores):
+    pale, hot = "#FFD0AE", "#FF9A58"
+    cells = [
+        (2, 0, pale), (3, 0, pale),
+        (1, 1, pale), (2, 1, pale), (3, 1, ACCENT), (4, 1, pale),
+        (2, 2, ACCENT), (3, 2, ACCENT), (4, 2, ACCENT), (5, 2, pale),
+        (1, 3, ACCENT), (2, 3, ACCENT), (3, 3, ACCENT),
+        (2, 4, ACCENT), (4, 4, ACCENT),
+        (0, 5, pale), (1, 5, pale), (2, 5, pale), (3, 5, pale), (4, 5, pale), (5, 5, pale),
+        (6, 4, hot),
+        (3, 6, pale),
+    ]
+    left, board_row = 72, 5
+    contact = left + 3
+    n = len(cores)
+
+    def y_of(core):
+        return (int(core) - 1 - board_row) * 4
+
+    y0 = y_of(cores[contact])
+    frames = [f"0%{{transform:translateY({y0}px)}}"]
+    i = 0
+    while i < n:
+        y = y_of(cores[(contact + i) % n])
+        j = i + 1
+        while j < n and y_of(cores[(contact + j) % n]) == y:
+            j += 1
+        if j < n:
+            frames.append(f"{100 * j / n:.4f}%{{transform:translateY({y_of(cores[(contact + j) % n])}px)}}")
+        i = j
+    frames.append(f"100%{{transform:translateY({y0}px)}}")
+    css = (f"@keyframes bob{{{''.join(frames)}}}"
+           f".rd{{transform:translateY({y0}px);animation:bob 33s steps(1,end) infinite}}")
+    rects = "".join(
+        f'<rect x="{(left + c) * 4}" y="{r * 4}" width="3" height="3" fill="{fill}"/>'
+        for c, r, fill in cells)
+    return css, f'<g class="rd">{rects}</g>'
+
+
 def header():
     W, H = 880, 366
     band_img, cores = band_png()
     band = png_b64(band_img)
+    css, fig = rider(cores)
     b = []
     b.append(f'<rect x="0" y="0" width="{W}" height="28" fill="{BAR}"/>')
     b.append(t(12, 19, "Pasindu", 12, "p w"))
@@ -174,12 +287,13 @@ def header():
              ".tape{animation:tape 33s steps(880,end) infinite}"
              "@keyframes gleam{0%{opacity:0}3%{opacity:1}16%{opacity:1}30%{opacity:0}100%{opacity:0}}"
              ".gl{opacity:0;animation:gleam 5.5s linear infinite}"
-             "@media(prefers-reduced-motion:reduce){.bl,.tape,.gl{animation:none}}</style>")
+             f"{css}"
+             "@media(prefers-reduced-motion:reduce){.bl,.tape,.gl,.rd{animation:none}}</style>")
     for (xx, yy), d in zip([(79, 10), (85, 10), (85, 16), (79, 16)], [-1.2, -.9, -.6, -.3]):
         b.append(f'<rect class="bl" x="{xx}" y="{yy}" width="4" height="4" fill="{ACCENT}" style="animation-delay:{d}s"/>')
     b.append(f'<svg x="0" y="28" width="{W}" height="140" viewBox="0 0 {W} 140"><g class="tape">'
              f'<image x="0" y="0" width="1760" height="140" href="data:image/png;base64,{band}" '
-             f'xlink:href="data:image/png;base64,{band}"/>{glint_layer(cores)}</g></svg>')
+             f'xlink:href="data:image/png;base64,{band}"/>{glint_layer(cores)}</g>{fig}</svg>')
     b.append(hline(0, W, 168))
     b.append(t(22, 232, "Pasindu", 56, "p s", extra=' style="font-weight:300;letter-spacing:-2px"'))
     b.append(t(24, 260, "Data engineering, analytics and open source.", 14, "p"))
