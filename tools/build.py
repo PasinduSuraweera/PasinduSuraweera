@@ -277,15 +277,14 @@ def timeline_mark(x, y):
 
 
 def header():
-    W, H = 880, 366
-    band_img, cores = band_png()
-    band = png_b64(band_img)
-    css, fig = rider(cores)
+    """The bar and the name panel. The wave above them is Timeline's live image
+    (timeline-readme.vercel.app), with the same settings this header used to draw."""
+    W, H = 880, 226
     b = []
     b.append(f'<rect x="0" y="0" width="{W}" height="28" fill="{BAR}"/>')
     b.append(t(12, 19, "Pasindu", 12, "p w"))
     b.append(t(100, 19, "BUILDING", 12, "p w"))
-    # The wave is drawn by Timeline (timeline-readme.vercel.app): tag it, with its week wave mark.
+    # Credit the wave above: Timeline's week wave mark and its address.
     tag = "timeline-readme.vercel.app ↗"
     # Geist Mono is 0.6em a character, so at 12px the tag ends at the right margin (868).
     # The text starts a fixed 10px after the mark, so the gap holds even if a fallback font draws it.
@@ -295,27 +294,18 @@ def header():
     b.append(hline(0, W, 27))
     b.append("<style>@keyframes bl{0%,24%{opacity:1}25%,100%{opacity:.2}}"
              ".bl{animation:bl 1.2s steps(1,end) infinite}"
-             "@keyframes tape{from{transform:translateX(0)}to{transform:translateX(-880px)}}"
-             ".tape{animation:tape 33s steps(880,end) infinite}"
-             "@keyframes gleam{0%{opacity:0}3%{opacity:1}16%{opacity:1}30%{opacity:0}100%{opacity:0}}"
-             ".gl{opacity:0;animation:gleam 5.5s linear infinite}"
-             f"{css}"
-             "@media(prefers-reduced-motion:reduce){.bl,.tape,.gl,.rd{animation:none}}</style>")
+             "@media(prefers-reduced-motion:reduce){.bl{animation:none}}</style>")
     for (xx, yy), d in zip([(79, 10), (85, 10), (85, 16), (79, 16)], [-1.2, -.9, -.6, -.3]):
         b.append(f'<rect class="bl" x="{xx}" y="{yy}" width="4" height="4" fill="{ACCENT}" style="animation-delay:{d}s"/>')
-    b.append(f'<svg x="0" y="28" width="{W}" height="140" viewBox="0 0 {W} 140"><g class="tape">'
-             f'<image x="0" y="0" width="1760" height="140" href="data:image/png;base64,{band}" '
-             f'xlink:href="data:image/png;base64,{band}"/>{glint_layer(cores)}</g>{fig}</svg>')
-    b.append(hline(0, W, 168))
-    b.append(t(22, 232, "Pasindu", 56, "p s", extra=' style="font-weight:300;letter-spacing:-2px"'))
-    b.append(t(24, 260, "Data engineering, analytics and open source.", 14, "p"))
-    b.append(t(24, 304, "NOW", 11, "m"))
-    b.append(t(104, 304, "building Basis and altr", 13, "p w"))
-    b.append(t(24, 332, "HANDLE", 11, "m"))
-    b.append(t(104, 332, "@PasinduSuraweera", 13, "p w"))
-    b.append(vline(536, 168, H)); b.append(vline(708, 168, H)); b.append(hline(536, W, 267))
-    cells = [(552, 196, "WORKING AT", "Gamma Pizzakraft"), (724, 196, "FOCUS", "data platforms"),
-             (552, 295, "FELLOW", "Databricks '26"), (724, 295, "STUDYING", "Data Science")]
+    b.append(t(22, 92, "Pasindu", 56, "p s", extra=' style="font-weight:300;letter-spacing:-2px"'))
+    b.append(t(24, 120, "Data engineering, analytics and open source.", 14, "p"))
+    b.append(t(24, 164, "NOW", 11, "m"))
+    b.append(t(104, 164, "building Basis and altr", 13, "p w"))
+    b.append(t(24, 192, "HANDLE", 11, "m"))
+    b.append(t(104, 192, "@PasinduSuraweera", 13, "p w"))
+    b.append(vline(536, 28, H)); b.append(vline(708, 28, H)); b.append(hline(536, W, 127))
+    cells = [(552, 56, "WORKING AT", "Gamma Pizzakraft"), (724, 56, "FOCUS", "data platforms"),
+             (552, 155, "FELLOW", "Databricks '26"), (724, 155, "STUDYING", "Data Science")]
     for x, y, k, v in cells:
         b.append(t(x, y, k, 10, "m")); b.append(t(x, y + 33, v, 13, "p w"))
     return svg(W, H, "Pasindu Suraweera: data engineering, analytics and open source. "
