@@ -270,6 +270,12 @@ def rider(cores):
     return css, f'<g class="rd">{rects}</g>'
 
 
+def timeline_mark(x, y):
+    """Timeline's week wave mark: seven squares riding one swell, 2px each, on whole pixels."""
+    return "".join(f'<rect x="{x + i * 3:g}" y="{y + dy}" width="2" height="2" fill="{ACCENT}"/>'
+                   for i, dy in enumerate([4, 1, 1, 4, 7, 7, 4]))
+
+
 def header():
     W, H = 880, 366
     band_img, cores = band_png()
@@ -279,7 +285,10 @@ def header():
     b.append(f'<rect x="0" y="0" width="{W}" height="28" fill="{BAR}"/>')
     b.append(t(12, 19, "Pasindu", 12, "p w"))
     b.append(t(100, 19, "BUILDING", 12, "p w"))
-    b.append(t(868, 19, "github.com/PasinduSuraweera", 12, "m", "end"))
+    # The wave is drawn by Timeline (timeline-readme.vercel.app): tag it, with its week wave mark.
+    tag = "timeline-readme.vercel.app ↗"
+    b.append(timeline_mark(round(868 - len(tag) * 6.6 - 30), 9))  # Geist Mono at 12px: 6.6px a character
+    b.append(t(868, 19, tag, 12, "m", "end"))
     b.append(hline(0, W, 27))
     b.append("<style>@keyframes bl{0%,24%{opacity:1}25%,100%{opacity:.2}}"
              ".bl{animation:bl 1.2s steps(1,end) infinite}"
