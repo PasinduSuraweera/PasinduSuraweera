@@ -287,8 +287,11 @@ def header():
     b.append(t(100, 19, "BUILDING", 12, "p w"))
     # The wave is drawn by Timeline (timeline-readme.vercel.app): tag it, with its week wave mark.
     tag = "timeline-readme.vercel.app ↗"
-    b.append(timeline_mark(round(868 - len(tag) * 6.6 - 30), 9))  # Geist Mono at 12px: 6.6px a character
-    b.append(t(868, 19, tag, 12, "m", "end"))
+    # Geist Mono is 0.6em a character, so at 12px the tag ends at the right margin (868).
+    # The text starts a fixed 10px after the mark, so the gap holds even if a fallback font draws it.
+    x = round(868 - len(tag) * 7.2) - 30
+    b.append(timeline_mark(x, 9))
+    b.append(t(x + 30, 19, tag, 12, "m"))
     b.append(hline(0, W, 27))
     b.append("<style>@keyframes bl{0%,24%{opacity:1}25%,100%{opacity:.2}}"
              ".bl{animation:bl 1.2s steps(1,end) infinite}"
