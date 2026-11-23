@@ -1,5 +1,6 @@
+<a href="https://timeline-readme.vercel.app"><img src="assets/bar.svg?v=1" width="100%" alt="Pasindu, building. The wave below is drawn by Timeline."></a>
 <a href="https://timeline-readme.vercel.app"><img src="https://timeline-readme.vercel.app/api/timeline?user=PasinduSuraweera&amp;border=1" width="100%" alt="PasinduSuraweera's contribution year as a scrolling pixel wave, drawn by Timeline"></a>
-<a href="https://timeline-readme.vercel.app"><img src="assets/header.svg?v=6" width="100%" alt="Pasindu Suraweera: data engineering, analytics and open source. Building Basis and altr. Databricks Student Fellow 2026."></a>
+<a href="https://timeline-readme.vercel.app"><img src="assets/header.svg?v=7" width="100%" alt="Pasindu Suraweera: data engineering, analytics and open source. Building Basis and altr. Databricks Student Fellow 2026."></a>
 
 <a href="https://github.com/PasinduSuraweera/altr-oss"><img src="assets/tile-altr.svg" width="50%" alt="altr: doc, sheet and deck skills for open-weight LLMs"></a><a href="https://github.com/PasinduSuraweera/flask-silo"><img src="assets/tile-flask-silo.svg" width="50%" alt="Flask-Silo: session-isolated state management for Flask APIs"></a>
 <a href="https://github.com/PasinduSuraweera/jevflow"><img src="assets/tile-jevflow.svg" width="50%" alt="JevFlow: a little world with a mind of its own"></a><a href="https://github.com/PasinduSuraweera/basis"><img src="assets/tile-basis.svg" width="50%" alt="Basis: CSE market and company intelligence on Databricks"></a>

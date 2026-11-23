@@ -276,36 +276,39 @@ def timeline_mark(x, y):
                    for i, dy in enumerate([4, 1, 1, 4, 7, 7, 4]))
 
 
-def header():
-    """The bar and the name panel. The wave above them is Timeline's live image
-    (timeline-readme.vercel.app), with the same settings this header used to draw."""
-    W, H = 880, 226
-    b = []
-    b.append(f'<rect x="0" y="0" width="{W}" height="28" fill="{BAR}"/>')
-    b.append(t(12, 19, "Pasindu", 12, "p w"))
-    b.append(t(100, 19, "BUILDING", 12, "p w"))
-    # Credit the wave above: Timeline's week wave mark and its address.
+def bar():
+    """The top bar: name, BUILDING and the Timeline credit. It sits above
+    Timeline's live wave (timeline-readme.vercel.app) in the README."""
+    W, H = 880, 28
+    b = [f'<rect x="0" y="0" width="{W}" height="{H}" fill="{BAR}"/>',
+         t(12, 19, "Pasindu", 12, "p w"), t(100, 19, "BUILDING", 12, "p w")]
     tag = "timeline-readme.vercel.app ↗"
     # Geist Mono is 0.6em a character, so at 12px the tag ends at the right margin (868).
-    # The text starts a fixed 10px after the mark, so the gap holds even if a fallback font draws it.
+    # The text starts a fixed gap after the mark, so it holds even if a fallback font draws it.
     x = round(868 - len(tag) * 7.2) - 30
     b.append(timeline_mark(x, 9))
     b.append(t(x + 30, 19, tag, 12, "m"))
-    b.append(hline(0, W, 27))
     b.append("<style>@keyframes bl{0%,24%{opacity:1}25%,100%{opacity:.2}}"
              ".bl{animation:bl 1.2s steps(1,end) infinite}"
              "@media(prefers-reduced-motion:reduce){.bl{animation:none}}</style>")
     for (xx, yy), d in zip([(79, 10), (85, 10), (85, 16), (79, 16)], [-1.2, -.9, -.6, -.3]):
         b.append(f'<rect class="bl" x="{xx}" y="{yy}" width="4" height="4" fill="{ACCENT}" style="animation-delay:{d}s"/>')
-    b.append(t(22, 92, "Pasindu", 56, "p s", extra=' style="font-weight:300;letter-spacing:-2px"'))
-    b.append(t(24, 120, "Data engineering, analytics and open source.", 14, "p"))
-    b.append(t(24, 164, "NOW", 11, "m"))
-    b.append(t(104, 164, "building Basis and altr", 13, "p w"))
-    b.append(t(24, 192, "HANDLE", 11, "m"))
-    b.append(t(104, 192, "@PasinduSuraweera", 13, "p w"))
-    b.append(vline(536, 28, H)); b.append(vline(708, 28, H)); b.append(hline(536, W, 127))
-    cells = [(552, 56, "WORKING AT", "Gamma Pizzakraft"), (724, 56, "FOCUS", "data platforms"),
-             (552, 155, "FELLOW", "Databricks '26"), (724, 155, "STUDYING", "Data Science")]
+    return svg(W, H, "Pasindu, building. The wave below is drawn by Timeline.", "".join(b))
+
+
+def header():
+    """The name panel under the wave."""
+    W, H = 880, 198
+    b = []
+    b.append(t(22, 64, "Pasindu", 56, "p s", extra=' style="font-weight:300;letter-spacing:-2px"'))
+    b.append(t(24, 92, "Data engineering, analytics and open source.", 14, "p"))
+    b.append(t(24, 136, "NOW", 11, "m"))
+    b.append(t(104, 136, "building Basis and altr", 13, "p w"))
+    b.append(t(24, 164, "HANDLE", 11, "m"))
+    b.append(t(104, 164, "@PasinduSuraweera", 13, "p w"))
+    b.append(vline(536, 0, H)); b.append(vline(708, 0, H)); b.append(hline(536, W, 99))
+    cells = [(552, 28, "WORKING AT", "Gamma Pizzakraft"), (724, 28, "FOCUS", "data platforms"),
+             (552, 127, "FELLOW", "Databricks '26"), (724, 127, "STUDYING", "Data Science")]
     for x, y, k, v in cells:
         b.append(t(x, y, k, 10, "m")); b.append(t(x, y + 33, v, 13, "p w"))
     return svg(W, H, "Pasindu Suraweera: data engineering, analytics and open source. "
@@ -518,6 +521,7 @@ def write(name, content):
     print(f"{name}: {len(content)/1024:.0f} KB")
 
 
+write("bar.svg", bar())
 write("header.svg", header())
 write("tile-altr.svg", tile(2, "altr", "pypi.org/project/altr-oss", art_altr(),
                             "Office skills for open-weight LLMs", "python",
