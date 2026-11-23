@@ -522,7 +522,7 @@ def write(name, content):
 
 
 write("bar.svg", bar())
-write("header.svg", header())
+write("panel.svg", header())
 write("tile-altr.svg", tile(2, "altr", "pypi.org/project/altr-oss", art_altr(),
                             "Office skills for open-weight LLMs", "python",
                             "altr: doc, sheet and deck skills for open-weight LLMs (pip install altr-oss)"))
